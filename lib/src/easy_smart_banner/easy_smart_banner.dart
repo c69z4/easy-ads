@@ -9,11 +9,11 @@ class EasySmartBannerAd extends StatefulWidget {
   const EasySmartBannerAd(
       {Key? key,
       this.priorityAdNetworks = const [
-        AdNetwork.facebook,
-        AdNetwork.ironSource,
-        AdNetwork.unity,
-        AdNetwork.appLovin,
-        AdNetwork.admob,
+        // AdNetwork.facebook,
+        // AdNetwork.ironSource,
+        // AdNetwork.unity,
+        // AdNetwork.appLovin,
+        // AdNetwork.admob,
       ],
       this.adSize = AdSize.banner})
       : super(key: key);
@@ -69,6 +69,7 @@ class _EasySmartBannerAdState extends State<EasySmartBannerAd> {
     });
   }
 
+//Aqui se controla que este disponible el banner
   bool _isBannerIdAvailable(AdNetwork adNetwork) {
     final adIdManager = EasyAds.instance.adIdManager;
     if (adNetwork == AdNetwork.admob &&
@@ -82,6 +83,9 @@ class _EasySmartBannerAdState extends State<EasySmartBannerAd> {
       return true;
     } else if (adNetwork == AdNetwork.unity &&
         adIdManager.unityAdIds?.bannerId != null) {
+      return true;
+    } else if (adNetwork == AdNetwork.ironSource &&
+        adIdManager.ironSourceAdIds?.bannerId != null) {
       return true;
     } else {
       return false;

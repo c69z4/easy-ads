@@ -63,7 +63,7 @@ class MyIdManger extends IAdIdManager {
         bannerId:
             'DefaultBanner', //IronSource.isBannerPlacementCapped('DefaultBanner')
 
-        rewardedId: 'DefaultRewardedVideo',
+        // rewardedId: 'DefaultRewardedVideo',
       );
 }
 
@@ -204,11 +204,11 @@ class _CountryListScreenState extends State<CountryListScreen> {
               ),
               const EasySmartBannerAd(
                 priorityAdNetworks: [
-                  AdNetwork.appLovin,
                   AdNetwork.facebook,
                   AdNetwork.ironSource,
                   AdNetwork.unity,
-                  AdNetwork.admob,
+                  AdNetwork.appLovin,
+                  // AdNetwork.admob,
                 ],
               ),
             ],
@@ -292,12 +292,12 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
               ),
             ),
           ),
-          // (widget.adNetwork == null)
-          //     ? const EasySmartBannerAd()
-          //     : EasyBannerAd(
-          //         adNetwork: widget.adNetwork!,
-          //         adSize: AdSize.largeBanner,
-          //       ),
+          (widget.adNetwork == null)
+              ? const EasySmartBannerAd()
+              : EasyBannerAd(
+                  adNetwork: widget.adNetwork!,
+                  adSize: AdSize.largeBanner,
+                ),
           const Expanded(
             child: SingleChildScrollView(
               child: Padding(

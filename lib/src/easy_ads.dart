@@ -11,6 +11,7 @@ import 'package:easy_ads_flutter/src/easy_applovin/easy_applovin_rewarded_ad.dar
 import 'package:easy_ads_flutter/src/easy_facebook/easy_facebook_banner_ad.dart';
 import 'package:easy_ads_flutter/src/easy_facebook/easy_facebook_full_screen_ad.dart';
 import 'package:easy_ads_flutter/src/easy_unity/easy_unity_ad.dart';
+import 'package:easy_ads_flutter/src/iron_source/easy_iron_source_banner.dart';
 import 'package:easy_ads_flutter/src/utils/auto_hiding_loader_dialog.dart';
 import 'package:easy_ads_flutter/src/utils/easy_event_controller.dart';
 import 'package:easy_ads_flutter/src/utils/easy_logger.dart';
@@ -18,11 +19,11 @@ import 'package:easy_ads_flutter/src/utils/extensions.dart';
 
 import 'package:easy_audience_network/easy_audience_network.dart';
 import 'package:flutter/material.dart';
-import 'package:ironsource_mediation/ironsource_mediation.dart';
+import 'package:flutter_ironsource_x/ironsource.dart';
+
 import 'package:unity_ads_plugin/unity_ads_plugin.dart';
 
-import 'iron_source/easy_iron_source_intertitial.dart';
-import 'iron_source/easy_iron_source_rewarded.dart';
+import 'iron_source/easy_iron_source_interstitial_ad.dart';
 
 class EasyAds {
   EasyAds._easyAds();
@@ -153,21 +154,17 @@ class EasyAds {
       );
     }
 
-    final admobAdId = manager.admobAdIds?.appId;
-    if (admobAdId != null && admobAdId.isNotEmpty) {
-      final response = await MobileAds.instance.initialize();
-      final status = response.adapterStatuses.values.firstOrNull?.state;
+    //iron source init
+    final ironSourceSdkId = manager.ironSourceAdIds?.appId;
+    if (ironSourceSdkId != null && ironSourceSdkId.isNotEmpty) {
+      EasyAds.instance._initIronSource(
+        // keywords: adMobAdRequest?.keywords,
+        // isAgeRestrictedUser: isAgeRestrictedUserForApplovin,
+        sdkKey: ironSourceSdkId,
+        interstitialAdUnitId: manager.appLovinAdIds?.interstitialId,
 
-      _eventController.fireNetworkInitializedEvent(
-          AdNetwork.admob, status == AdapterInitializationState.ready);
-
-      // Initializing admob Ads
-      await EasyAds.instance._initAdmob(
-        appOpenAdUnitId: manager.admobAdIds?.appOpenId,
-        interstitialAdUnitId: manager.admobAdIds?.interstitialId,
-        rewardedAdUnitId: manager.admobAdIds?.rewardedId,
-        appOpenAdOrientation: appOpenAdOrientation,
-      );
+        // rewardedAdUnitId: manager.appLovinAdIds?.rewardedId,
+      ); // currentflutterVersion: currentflutterVersion
     }
 
     final unityGameId = manager.unityAdIds?.appId;
@@ -191,16 +188,21 @@ class EasyAds {
       );
     }
 
-    //iron source init
-    final ironSourceSdkId = manager.ironSourceAdIds?.appId;
-    if (ironSourceSdkId != null && ironSourceSdkId.isNotEmpty) {
-      EasyAds.instance._initIronSource(
-          // keywords: adMobAdRequest?.keywords,
-          // isAgeRestrictedUser: isAgeRestrictedUserForApplovin,
-          sdkKey: ironSourceSdkId,
-          interstitialAdUnitId: manager.appLovinAdIds?.interstitialId,
-          rewardedAdUnitId: manager.appLovinAdIds?.rewardedId,
-          currentflutterVersion: currentflutterVersion);
+    final admobAdId = manager.admobAdIds?.appId;
+    if (admobAdId != null && admobAdId.isNotEmpty) {
+      final response = await MobileAds.instance.initialize();
+      final status = response.adapterStatuses.values.firstOrNull?.state;
+
+      _eventController.fireNetworkInitializedEvent(
+          AdNetwork.admob, status == AdapterInitializationState.ready);
+
+      // Initializing admob Ads
+      await EasyAds.instance._initAdmob(
+        appOpenAdUnitId: manager.admobAdIds?.appOpenId,
+        interstitialAdUnitId: manager.admobAdIds?.interstitialId,
+        rewardedAdUnitId: manager.admobAdIds?.rewardedId,
+        appOpenAdOrientation: appOpenAdOrientation,
+      );
     }
   }
 
@@ -247,6 +249,16 @@ class EasyAds {
             'You are trying to create a banner and Applovin Banner id is null in ad id manager');
         if (bannerId != null) {
           ad = EasyApplovinBannerAd(bannerId);
+          _eventController.setupEvents(ad);
+        }
+        break;
+
+      case AdNetwork.ironSource:
+        final bannerId = adIdManager.ironSourceAdIds?.bannerId;
+        assert(bannerId != null,
+            'You are trying to create a banner and ironSource Banner id is null in ad id manager');
+        if (bannerId != null) {
+          ad = EasyIronSourceBannerAd(bannerId);
           _eventController.setupEvents(ad);
         }
         break;
@@ -432,83 +444,106 @@ class EasyAds {
 
 //Ironsource init
 
-  Future<void> _initIronSource(
-      {required String sdkKey,
-      // bool? isAgeRestrictedUser,
-      // List<String>? keywords,
-      String? interstitialAdUnitId,
-      String? rewardedAdUnitId,
-      String? currentflutterVersion}) async {
+  Future<void> _initIronSource({
+    required String sdkKey,
+    // bool? isAgeRestrictedUser,
+    // List<String>? keywords,
+    String? interstitialAdUnitId,
+    // String? rewardedAdUnitId,
+    //  String? currentflutterVersion
+  }) async {
     bool? response;
 
-    try {
-      IronSource.setFlutterVersion(
-          currentflutterVersion ?? '3.10.0-5.0.pre.15');
-      //debug
-      await IronSource.setAdaptersDebug(true);
-      IronSource.validateIntegration();
-      //set regulation params
-      // GDPR
-      await IronSource.setConsent(true);
-      await IronSource.setMetaData({
-        // CCPA
-        'do_not_sell': ['false'],
-        // COPPA
-        'is_child_directed': ['false']
-      });
+    var userId = await IronSource.getAdvertiserId();
+    await IronSource.validateIntegration();
+    await IronSource.setUserId(userId);
 
-      // GAID, IDFA, IDFV
-      String id = await IronSource.getAdvertiserId();
-      print('AdvertiserID: $id');
+    if (interstitialAdUnitId != null) {
+      final intertitialIronSource =
+          EasyIronSourceInterstitialAd(interstitialAdUnitId);
 
-      final adUnits = <IronSourceAdUnit>[];
-      if (interstitialAdUnitId != null) {
-        adUnits.add(IronSourceAdUnit.Interstitial);
-      }
-      if (rewardedAdUnitId != null) {
-        adUnits.add(IronSourceAdUnit.RewardedVideo);
-      }
-      await IronSource.init(
+      response = await IronSource.initialize(
         appKey: sdkKey,
-        adUnits: adUnits,
-        // initListener: this,
+        listener: intertitialIronSource,
+        gdprConsent: true,
+        ccpaConsent: true,
+        isChildDirected: false,
       );
 
-      response = true;
-    } catch (e) {
-      response = null;
-    }
-    print('response iron source $response');
+      print('response iron source $response');
 
-    if (response != null) {
-      _eventController.fireNetworkInitializedEvent(AdNetwork.ironSource, true);
-    } else {
-      _eventController.fireNetworkInitializedEvent(AdNetwork.ironSource, false);
+      if (response != null) {
+        _eventController.fireNetworkInitializedEvent(
+            AdNetwork.ironSource, true);
+      } else {
+        _eventController.fireNetworkInitializedEvent(
+            AdNetwork.ironSource, false);
+      }
+
+      // init interstitial ads
+      if (_interstitialAds.doesNotContain(
+          AdNetwork.ironSource, AdUnitType.interstitial)) {
+        final ad = intertitialIronSource;
+        // IronSource.setISListener(ad);
+        _interstitialAds.add(ad);
+        _eventController.setupEvents(ad);
+        await ad.load();
+      }
     }
 
-    // init interstitial ads
-    if (interstitialAdUnitId != null &&
-        _interstitialAds.doesNotContain(
-            AdNetwork.ironSource, AdUnitType.interstitial)) {
-      final ad = EasyIronSourceIntertitial(interstitialAdUnitId);
-      IronSource.setISListener(ad);
-      _interstitialAds.add(ad);
-      _eventController.setupEvents(ad);
+    // interstitialReady = await IronSource.isInterstitialReady();
+    // rewardeVideoAvailable = await IronSource.isRewardedVideoAvailable();
+    // offerwallAvailable = await IronSource.isOfferwallAvailable();
 
-      await ad.load();
-    }
+    // try {
+    // IronSource.setFlutterVersion(
+    //     currentflutterVersion ?? '3.10.0-5.0.pre.15');
+    // //debug
+    // await IronSource.setAdaptersDebug(true);
+    // IronSource.validateIntegration();
+    // //set regulation params
+    // // GDPR
+    // await IronSource.setConsent(true);
+    // await IronSource.setMetaData({
+    //   // CCPA
+    //   'do_not_sell': ['false'],
+    //   // COPPA
+    //   'is_child_directed': ['false']
+    // });
+
+    // // GAID, IDFA, IDFV
+    // String id = await IronSource.getAdvertiserId();
+    // print('AdvertiserID: $id');
+
+    // final adUnits = <IronSourceAdUnit>[];
+    // if (interstitialAdUnitId != null) {
+    //   adUnits.add(IronSourceAdUnit.Interstitial);
+    // }
+    // if (rewardedAdUnitId != null) {
+    //   adUnits.add(IronSourceAdUnit.RewardedVideo);
+    // }
+    // await IronSource.init(
+    //   appKey: sdkKey,
+    //   adUnits: adUnits,
+    //   // initListener: this,
+    // );
+
+    //   response = true;
+    // } catch (e) {
+    //   response = null;
+    // }
 
     // init rewarded ads
-    if (rewardedAdUnitId != null &&
-        _rewardedAds.doesNotContain(
-            AdNetwork.ironSource, AdUnitType.rewarded)) {
-      final ad = EasyIronSourceRewarded(rewardedAdUnitId);
-      IronSource.setRVListener(ad);
-      _rewardedAds.add(ad);
-      _eventController.setupEvents(ad);
+    // if (rewardedAdUnitId != null &&
+    //     _rewardedAds.doesNotContain(
+    //         AdNetwork.ironSource, AdUnitType.rewarded)) {
+    //   final ad = EasyIronSourceRewarded(rewardedAdUnitId);
+    //   IronSource.setRVListener(ad);
+    //   _rewardedAds.add(ad);
+    //   _eventController.setupEvents(ad);
 
-      await ad.load();
-    }
+    //   await ad.load();
+    // }
   }
 
   /// Displays [adUnitType] ad from [adNetwork]. It will check if first ad it found from list is loaded,

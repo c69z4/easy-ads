@@ -3,6 +3,7 @@ description: Easy Ads is a wrapper around famous ad packages which let you integ
 version: 2.3.2
 homepage: https://github.com/nooralibutt/easy-ads
 repository: https://github.com/nooralibutt/easy-ads
+publish_to: none
 
 environment:
   sdk: ">=2.18.1 <3.0.0"
@@ -17,7 +18,12 @@ dependencies:
   applovin_max: ^2.4.6
   easy_audience_network: ^0.0.6
   logger: ^1.3.0
-  ironsource_mediation: ^1.1.0
+  # flutter_ironsource_x: ^2.7.2
+  flutter_ironsource_x:
+    git:
+      url: https://github.com/jpolstre/flutter_ironsource_x.git
+  provider: ^6.0.5
+  
 
 dev_dependencies:
   flutter_lints: ^2.0.1

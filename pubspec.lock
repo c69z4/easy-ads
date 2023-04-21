@@ -38,6 +38,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_ironsource_x:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "1ae50590cdea46c940789b952891d1024778ed9d"
+      url: "https://github.com/jpolstre/flutter_ironsource_x.git"
+    source: git
+    version: "2.7.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -54,14 +63,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
-  ironsource_mediation:
-    dependency: "direct main"
-    description:
-      name: ironsource_mediation
-      sha256: "1bde4b5fed2f157a0dbf232a533c3119fd3c61c21b79230b34479515d9b01c4e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   js:
     dependency: transitive
     description:
@@ -102,6 +103,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -110,6 +119,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.5"
   sky_engine:
     dependency: transitive
     description: flutter
