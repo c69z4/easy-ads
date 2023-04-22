@@ -23,7 +23,7 @@ class EasyIronSourceInterstitialAd extends EasyAdBase with IronSourceListener {
 
   @override
   Future<void> load() async {
-    print('iron isAdLoaded load: $_isAdLoaded');
+    // print('iron isAdLoaded load: $_isAdLoaded');
 
     if (_isAdLoaded) return;
     if (adUnitType == AdUnitType.interstitial) {

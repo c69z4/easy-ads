@@ -161,7 +161,7 @@ class EasyAds {
         // keywords: adMobAdRequest?.keywords,
         // isAgeRestrictedUser: isAgeRestrictedUserForApplovin,
         sdkKey: ironSourceSdkId,
-        interstitialAdUnitId: manager.appLovinAdIds?.interstitialId,
+        interstitialAdUnitId: manager.ironSourceAdIds?.interstitialId,
 
         // rewardedAdUnitId: manager.appLovinAdIds?.rewardedId,
       ); // currentflutterVersion: currentflutterVersion
@@ -470,7 +470,7 @@ class EasyAds {
         isChildDirected: false,
       );
 
-      print('response iron source $response');
+      // print('response iron source $response');
 
       if (response != null) {
         _eventController.fireNetworkInitializedEvent(
@@ -565,7 +565,7 @@ class EasyAds {
     } else if (adUnitType == AdUnitType.interstitial) {
       // ads = _interstitialAds;
       ads = _sortIntertitial; //ok
-      print('_interstitialAds length--->${ads.length}');
+      // print('_interstitialAds length--->${ads.length}');
     } else if (adUnitType == AdUnitType.appOpen) {
       ads = _appOpenAds;
     }

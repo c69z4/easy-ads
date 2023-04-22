@@ -27,22 +27,10 @@ class MyIdManger extends IAdIdManager {
   @override
   AppAdIds? get fbAdIds => const AppAdIds(
         appId: '1579706379118402',
-        interstitialId: 'VID_HD_16_9_15S_LINK#YOUR_PLACEMENT_ID',
+        interstitialId: 'VID_HD_16_9_15S_LINK#YOUR_PLACEMENT_ID', //video test
         bannerId: 'IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID',
-        rewardedId: 'VID_HD_16_9_46S_APP_INSTALL#YOUR_PLACEMENT_ID',
-      );
-
-  @override
-  AppAdIds? get appLovinAdIds => AppAdIds(
-        appId:
-            "cbl7cVoB2PrVfbVTm2mzXBpwsaE1dXWT6JehTv4TuLfJMC4J28E7K3KgCrNIPfKc5JbwaiNV7Ko5ZeONQv_w9Q",
-        bannerId:
-            Platform.isAndroid ? '723a5fcfa774aa66' : 'IOS_BANNER_AD_UNIT_ID',
-        interstitialId:
-            Platform.isAndroid ? '4f79e18cb60ab27a' : 'IOS_INTER_AD_UNIT_ID',
-        rewardedId: Platform.isAndroid
-            ? 'ANDROID_REWARDED_AD_UNIT_ID'
-            : 'IOS_REWARDED_AD_UNIT_ID',
+        rewardedId:
+            'VID_HD_16_9_46S_APP_INSTALL#YOUR_PLACEMENT_ID', //video test
       );
 
   @override
@@ -65,25 +53,39 @@ class MyIdManger extends IAdIdManager {
 
         // rewardedId: 'DefaultRewardedVideo',
       );
+
+  @override
+  AppAdIds? get appLovinAdIds => AppAdIds(
+        appId:
+            "cbl7cVoB2PrVfbVTm2mzXBpwsaE1dXWT6JehTv4TuLfJMC4J28E7K3KgCrNIPfKc5JbwaiNV7Ko5ZeONQv_w9Q",
+        bannerId:
+            Platform.isAndroid ? '723a5fcfa774aa66' : 'IOS_BANNER_AD_UNIT_ID',
+        interstitialId:
+            Platform.isAndroid ? '4f79e18cb60ab27a' : 'IOS_INTER_AD_UNIT_ID',
+        rewardedId: Platform.isAndroid
+            ? 'ANDROID_REWARDED_AD_UNIT_ID'
+            : 'IOS_REWARDED_AD_UNIT_ID',
+      );
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyAds.instance.initialize(adIdManager,
-      unityTestMode: true,
       // adMobAdRequest: const AdRequest(),
       // admobConfiguration: RequestConfiguration(testDeviceIds: []),
+
+      unityTestMode: true,
       fbTestingId: '73f92d66-f8f6-4978-999f-b5e0dd62275a',
       fbTestMode: true,
-      showAdBadge: Platform.isIOS,
-      fbiOSAdvertiserTrackingEnabled: true,
+      // showAdBadge: Platform.isIOS,
+      // fbiOSAdvertiserTrackingEnabled: true,
 
       //for intertitials priority
       priorityAdNetworks: [
         AdNetwork.facebook,
         AdNetwork.ironSource,
-        AdNetwork.unity,
-        AdNetwork.appLovin,
+        // AdNetwork.unity,
+        // AdNetwork.appLovin,
         // AdNetwork.admob,
       ]);
 

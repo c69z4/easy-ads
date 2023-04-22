@@ -24,7 +24,7 @@ class EasyIronSourceBannerAd extends EasyAdBase with IronSourceBannerListener {
 
   @override
   dynamic show() {
-    print('show banner');
+    // print('show banner');
     final bannerProvider = BannerProvider();
     final bannerWidget = BuildBanner(
       easyIronSourceBannerAd: this,
@@ -90,7 +90,7 @@ class BuildBanner extends StatelessWidget {
         bannerProv,
         child,
       ) {
-        print('reload Consumer Align osea Banner');
+        // print('reload Consumer Align osea Banner');
 
         /*
         banner
