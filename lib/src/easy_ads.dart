@@ -217,8 +217,8 @@ class EasyAds {
     switch (adNetwork) {
       case AdNetwork.admob:
         final bannerId = adIdManager.admobAdIds?.bannerId;
-        assert(bannerId != null,
-            'You are trying to create a banner and Admob Banner id is null in ad id manager');
+        // assert(bannerId != null,
+        //     'You are trying to create a banner and Admob Banner id is null in ad id manager');
         if (bannerId != null) {
           ad = EasyAdmobBannerAd(bannerId,
               adSize: adSize, adRequest: _adRequest);
@@ -227,8 +227,8 @@ class EasyAds {
         break;
       case AdNetwork.unity:
         final bannerId = adIdManager.unityAdIds?.bannerId;
-        assert(bannerId != null,
-            'You are trying to create a banner and Unity Banner id is null in ad id manager');
+        // assert(bannerId != null,
+        //     'You are trying to create a banner and Unity Banner id is null in ad id manager');
         if (bannerId != null) {
           ad = EasyUnityBannerAd(bannerId, adSize: adSize);
           _eventController.setupEvents(ad);
@@ -236,8 +236,8 @@ class EasyAds {
         break;
       case AdNetwork.facebook:
         final bannerId = adIdManager.fbAdIds?.bannerId;
-        assert(bannerId != null,
-            'You are trying to create a banner and Facebook Banner id is null in ad id manager');
+        // assert(bannerId != null,
+        //     'You are trying to create a banner and Facebook Banner id is null in ad id manager');
         if (bannerId != null) {
           ad = EasyFacebookBannerAd(bannerId, adSize: adSize);
           _eventController.setupEvents(ad);
@@ -245,8 +245,8 @@ class EasyAds {
         break;
       case AdNetwork.appLovin:
         final bannerId = adIdManager.appLovinAdIds?.bannerId;
-        assert(bannerId != null,
-            'You are trying to create a banner and Applovin Banner id is null in ad id manager');
+        // assert(bannerId != null,
+        //     'You are trying to create a banner and Applovin Banner id is null in ad id manager');
         if (bannerId != null) {
           ad = EasyApplovinBannerAd(bannerId);
           _eventController.setupEvents(ad);
@@ -255,8 +255,8 @@ class EasyAds {
 
       case AdNetwork.ironSource:
         final bannerId = adIdManager.ironSourceAdIds?.bannerId;
-        assert(bannerId != null,
-            'You are trying to create a banner and ironSource Banner id is null in ad id manager');
+        // assert(bannerId != null,
+        //     'You are trying to create a banner and ironSource Banner id is null in ad id manager');
         if (bannerId != null) {
           ad = EasyIronSourceBannerAd(bannerId);
           _eventController.setupEvents(ad);

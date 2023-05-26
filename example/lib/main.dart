@@ -25,13 +25,14 @@ class MyIdManger extends IAdIdManager {
    */
 
   @override
-  AppAdIds? get fbAdIds => const AppAdIds(
+  AppAdIds? get fbAdIds =>
+      null; /*const AppAdIds(
         appId: '1579706379118402',
         interstitialId: 'VID_HD_16_9_15S_LINK#YOUR_PLACEMENT_ID', //video test
         bannerId: 'IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID',
         rewardedId:
             'VID_HD_16_9_46S_APP_INSTALL#YOUR_PLACEMENT_ID', //video test
-      );
+      );*/
 
   @override
   AppAdIds? get unityAdIds => AppAdIds(
@@ -77,6 +78,7 @@ void main() async {
       unityTestMode: true,
       fbTestingId: '73f92d66-f8f6-4978-999f-b5e0dd62275a',
       fbTestMode: true,
+      enableLogger: true, //false in production
       // showAdBadge: Platform.isIOS,
       // fbiOSAdvertiserTrackingEnabled: true,
 
@@ -84,8 +86,8 @@ void main() async {
       priorityAdNetworks: [
         AdNetwork.facebook,
         AdNetwork.ironSource,
-        // AdNetwork.unity,
-        // AdNetwork.appLovin,
+        AdNetwork.unity,
+        AdNetwork.appLovin,
         // AdNetwork.admob,
       ]);
 
@@ -207,9 +209,9 @@ class _CountryListScreenState extends State<CountryListScreen> {
               const EasySmartBannerAd(
                 priorityAdNetworks: [
                   AdNetwork.facebook,
-                  AdNetwork.ironSource,
                   AdNetwork.unity,
-                  AdNetwork.appLovin,
+                  AdNetwork.ironSource,
+                  // AdNetwork.appLovin,
                   // AdNetwork.admob,
                 ],
               ),
@@ -295,7 +297,15 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
             ),
           ),
           (widget.adNetwork == null)
-              ? const EasySmartBannerAd()
+              ? const EasySmartBannerAd(
+                  priorityAdNetworks: [
+                    AdNetwork.facebook,
+                    AdNetwork.unity,
+                    AdNetwork.ironSource,
+                    // AdNetwork.appLovin,
+                    // AdNetwork.admob,
+                  ],
+                )
               : EasyBannerAd(
                   adNetwork: widget.adNetwork!,
                   adSize: AdSize.largeBanner,
