@@ -21,11 +21,11 @@ class EasyIronSourceBannerAd extends EasyAdBase with IronSourceBannerListener {
 
   @override
   Future<void> load() async {}
+  final bannerProvider = BannerProvider();
 
   @override
   dynamic show() {
     // print('show banner');
-    final bannerProvider = BannerProvider();
     final bannerWidget = BuildBanner(
       easyIronSourceBannerAd: this,
       bannerProvider: bannerProvider,

@@ -57,15 +57,51 @@ class MyIdManger extends IAdIdManager {
 
   @override
   AppAdIds? get appLovinAdIds => AppAdIds(
-        appId:
-            "cbl7cVoB2PrVfbVTm2mzXBpwsaE1dXWT6JehTv4TuLfJMC4J28E7K3KgCrNIPfKc5JbwaiNV7Ko5ZeONQv_w9Q",
-        bannerId:
-            Platform.isAndroid ? '723a5fcfa774aa66' : 'IOS_BANNER_AD_UNIT_ID',
-        interstitialId:
-            Platform.isAndroid ? '4f79e18cb60ab27a' : 'IOS_INTER_AD_UNIT_ID',
+        appId: "YOUR_SDK_KEY",
+        bannerId: Platform.isAndroid
+            ? 'ANDROID_BANNER_AD_UNIT_ID'
+            : 'IOS_BANNER_AD_UNIT_ID',
+        interstitialId: Platform.isAndroid
+            ? 'ANDROID_INTER_AD_UNIT_ID'
+            : 'IOS_INTER_AD_UNIT_ID',
         rewardedId: Platform.isAndroid
             ? 'ANDROID_REWARDED_AD_UNIT_ID'
             : 'IOS_REWARDED_AD_UNIT_ID',
+      );
+
+  @override
+  AppAdIds? get yandexAdIds => AppAdIds(
+        appId: '2460782',
+        bannerId:
+            Platform.isAndroid ? 'demo-banner-yandex' : 'IOS_BANNER_AD_UNIT_ID',
+        interstitialId: Platform.isAndroid
+            ? 'demo-interstitial-yandex'
+            : 'IOS_INTER_AD_UNIT_ID',
+      );
+
+  @override
+  AppAdIds? get vungleAdIds => const AppAdIds(
+      appId: '6494f531cd4b24913c61c4b8', //'5adff6afb2cadf62871219ff'
+      interstitialId: 'INTERSTITIALONE-8961105' //INTERSTITIALONE-8961105
+      );
+
+  @override
+  AppAdIds? get mytargetAdIds => const AppAdIds(
+        appId: 'cualquiera',
+        interstitialId:
+            '6896', //esta funcando con '6896' tomado del ejemplo , hasta que se apruebe en Mytarget// '1307283'
+      );
+  @override
+  AppAdIds? get adColonyAdIds => const AppAdIds(
+        appId: 'app8cb3ef4425934d0295',
+        interstitialId: 'vze1e44a48128a4aaf8c',
+      );
+
+  @override
+  AppAdIds? get startAppAdIds => const AppAdIds(
+        appId:
+            '201343194', //'201343194',//no es necesario aqui se define en AndroidManifest.xml
+        interstitialId: '',
       );
 }
 
@@ -82,12 +118,17 @@ void main() async {
       // showAdBadge: Platform.isIOS,
       // fbiOSAdvertiserTrackingEnabled: true,
 
-      //for intertitials priority
+      //for intertitials priority/and enabled (solo los que se emnsionan se mostraran)
       priorityAdNetworks: [
+        AdNetwork.vungle,
+        AdNetwork.yandex,
         AdNetwork.facebook,
         AdNetwork.ironSource,
         AdNetwork.unity,
         AdNetwork.appLovin,
+        AdNetwork.mytarget,
+        AdNetwork.adColony,
+        AdNetwork.startApp,
         // AdNetwork.admob,
       ]);
 
@@ -171,43 +212,68 @@ class _CountryListScreenState extends State<CountryListScreen> {
                     _showAd(AdNetwork.ironSource, AdUnitType.interstitial),
               ),
               AdButton(
+                networkName: 'Yandex Interstitial',
+                onTap: () => _showAd(AdNetwork.yandex, AdUnitType.interstitial),
+              ),
+              AdButton(
+                networkName: 'Vungle Interstitial',
+                onTap: () => _showAd(AdNetwork.vungle, AdUnitType.interstitial),
+              ),
+              AdButton(
+                networkName: 'myTarget Interstitial',
+                onTap: () =>
+                    _showAd(AdNetwork.mytarget, AdUnitType.interstitial),
+              ),
+              AdButton(
+                networkName: 'AdColony Interstitial',
+                onTap: () =>
+                    _showAd(AdNetwork.adColony, AdUnitType.interstitial),
+              ),
+              AdButton(
+                networkName: 'StartApp Interstitial',
+                onTap: () =>
+                    _showAd(AdNetwork.startApp, AdUnitType.interstitial),
+              ),
+              AdButton(
                 networkName: 'Available Interstitial',
                 onTap: () => _showAvailableAd(AdUnitType.interstitial),
               ),
               const Divider(thickness: 2),
-              Text(
-                'Rewarded',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
-              ),
-              AdButton(
-                networkName: 'Admob Rewarded',
-                onTap: () => _showAd(AdNetwork.admob, AdUnitType.rewarded),
-              ),
-              AdButton(
-                networkName: 'Facebook Rewarded',
-                onTap: () => _showAd(AdNetwork.facebook, AdUnitType.rewarded),
-              ),
-              AdButton(
-                networkName: 'Unity Rewarded',
-                onTap: () => _showAd(AdNetwork.unity, AdUnitType.rewarded),
-              ),
-              AdButton(
-                networkName: 'Applovin Rewarded',
-                onTap: () => _showAd(AdNetwork.appLovin, AdUnitType.rewarded),
-              ),
-              AdButton(
-                networkName: 'IronSource Rewarded',
-                onTap: () => _showAd(AdNetwork.ironSource, AdUnitType.rewarded),
-              ),
-              AdButton(
-                networkName: 'Available Rewarded',
-                onTap: () => _showAvailableAd(AdUnitType.rewarded),
-              ),
+              // Text(
+              //   'Rewarded',
+              //   style: Theme.of(context)
+              //       .textTheme
+              //       .headlineMedium!
+              //       .copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
+              // ),
+              // AdButton(
+              //   networkName: 'Admob Rewarded',
+              //   onTap: () => _showAd(AdNetwork.admob, AdUnitType.rewarded),
+              // ),
+              // AdButton(
+              //   networkName: 'Facebook Rewarded',
+              //   onTap: () => _showAd(AdNetwork.facebook, AdUnitType.rewarded),
+              // ),
+              // AdButton(
+              //   networkName: 'Unity Rewarded',
+              //   onTap: () => _showAd(AdNetwork.unity, AdUnitType.rewarded),
+              // ),
+              // AdButton(
+              //   networkName: 'Applovin Rewarded',
+              //   onTap: () => _showAd(AdNetwork.appLovin, AdUnitType.rewarded),
+              // ),
+              // AdButton(
+              //   networkName: 'IronSource Rewarded',
+              //   onTap: () => _showAd(AdNetwork.ironSource, AdUnitType.rewarded),
+              // ),
+              // AdButton(
+              //   networkName: 'Available Rewarded',
+              //   onTap: () => _showAvailableAd(AdUnitType.rewarded),
+              // ),
               const EasySmartBannerAd(
                 priorityAdNetworks: [
+                  //no hay vungle banner
+                  AdNetwork.yandex,
                   AdNetwork.facebook,
                   AdNetwork.unity,
                   AdNetwork.ironSource,
@@ -299,6 +365,8 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
           (widget.adNetwork == null)
               ? const EasySmartBannerAd(
                   priorityAdNetworks: [
+                    AdNetwork.yandex,
+
                     AdNetwork.facebook,
                     AdNetwork.unity,
                     AdNetwork.ironSource,

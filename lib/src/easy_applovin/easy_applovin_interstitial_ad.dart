@@ -66,7 +66,7 @@ class EasyApplovinInterstitialAd extends EasyAdBase {
         },
         onAdHiddenCallback: (_) {
           onAdDismissed?.call(adNetwork, adUnitType, null);
-          load(); //carga el siguiente ok
+          //load(); //carga el siguiente ok
         },
       ),
     );

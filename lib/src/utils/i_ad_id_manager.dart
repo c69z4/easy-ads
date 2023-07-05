@@ -23,8 +23,23 @@ abstract class IAdIdManager {
 
   /// Pass null if you wish not to implement IronSource ads
   ///
-  /// AppAdIds? get fbAdIds => null;
+  /// AppAdIds? get ironSourceAdIds => null;
   AppAdIds? get ironSourceAdIds;
+
+  /// AppAdIds? get yandexAdIds => null;
+  AppAdIds? get yandexAdIds;
+
+  /// AppAdIds? get vungleAdIds => null;
+  AppAdIds? get vungleAdIds;
+
+  /// AppAdIds? get mytargetAdIds => null;
+  AppAdIds? get mytargetAdIds;
+
+  /// AppAdIds? get adColonyAdIds => null;
+  AppAdIds? get adColonyAdIds;
+
+  /// AppAdIds? get startAppAdIds => null;
+  AppAdIds? get startAppAdIds;
 }
 
 class AppAdIds {

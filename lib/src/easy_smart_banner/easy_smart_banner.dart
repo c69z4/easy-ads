@@ -87,6 +87,9 @@ class _EasySmartBannerAdState extends State<EasySmartBannerAd> {
     } else if (adNetwork == AdNetwork.ironSource &&
         adIdManager.ironSourceAdIds?.bannerId != null) {
       return true;
+    } else if (adNetwork == AdNetwork.yandex &&
+        adIdManager.yandexAdIds?.bannerId != null) {
+      return true;
     } else {
       return false;
     }
