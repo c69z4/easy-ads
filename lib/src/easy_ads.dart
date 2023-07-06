@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:adcolony_flutter/adcolony_flutter.dart';
 import 'package:applovin_max/applovin_max.dart';
@@ -84,32 +85,6 @@ class EasyAds {
   /// On banner, ad badge will appear
   bool get showAdBadge => _showAdBadge;
   bool _showAdBadge = false;
-
-  /*
-  
-  void _insertAdIntertitial(EasyAdBase ad) {
-    final index =
-        _interstitialAds.indexWhere((e) => ad.adNetwork == e.adNetwork);
-    print('index--$index, ${ad.adNetwork.toString()}');
-    if (index > -1) {
-      _interstitialAds.insert(index, ad);
-      _interstitialAds.removeAt(index + 1);
-    } else {
-      _interstitialAds.add(ad);
-    }
-    final result = <EasyAdBase>[];
-    for (var priorityAdNetwork in priorityAdNetworks) {
-      final index =
-          _interstitialAds.indexWhere((e) => e.adNetwork == priorityAdNetwork);
-      if (index > -1) {
-        print('index--$index, ${priorityAdNetwork.toString()}');
-        result.insert(0, _interstitialAds[index]);
-      }
-    }
-    _interstitialAds.clear();
-    _interstitialAds.addAll(result);
-  }
-   */
 
   /// Initializes the Google Mobile Ads SDK.
   ///
@@ -208,7 +183,7 @@ class EasyAds {
         // rewardedAdUnitId: manager.appLovinAdIds?.rewardedId,
       ); // currentflutterVersion: currentflutterVersion
     }
-    //stratapp(startio) init
+    //startApp(startio) init
 
     final startAppSdkId = manager.startAppAdIds?.appId;
     if (startAppSdkId != null && startAppSdkId.isNotEmpty) {
@@ -356,6 +331,7 @@ class EasyAds {
             AdNetwork.admob, AdUnitType.interstitial)) {
       final ad = EasyAdmobInterstitialAd(
           interstitialAdUnitId, _adRequest, immersiveModeEnabled);
+      log('Admob--->${ad.adNetwork.name}');
       _interstitialAds.add(ad);
       _eventController.setupEvents(ad);
 
@@ -415,7 +391,9 @@ class EasyAds {
         _interstitialAds.doesNotContain(
             AdNetwork.appLovin, AdUnitType.interstitial)) {
       final ad = EasyApplovinInterstitialAd(interstitialAdUnitId);
+      log('AppLovin--->${ad.adNetwork.name}');
       _interstitialAds.add(ad);
+
       _eventController.setupEvents(ad);
 
       await ad.load();
@@ -444,6 +422,8 @@ class EasyAds {
             AdNetwork.yandex, AdUnitType.interstitial)) {
       final ad = EasyYandexInterstitialAd(interstitialAdUnitId);
       _interstitialAds.add(ad);
+      log('yandex--->${ad.adNetwork.name}');
+
       _eventController.setupEvents(ad);
 
       await ad.load();
@@ -477,7 +457,7 @@ class EasyAds {
           ad.onAdDismissed?.call(ad.adNetwork, ad.adUnitType, null);
           //  load(); //carga el siguiente ok
         };
-
+        log('Vungle--->${ad.adNetwork.name}');
         _interstitialAds.add(ad);
         _eventController.setupEvents(ad);
         await ad.load();
@@ -496,6 +476,8 @@ class EasyAds {
         _interstitialAds.doesNotContain(
             AdNetwork.mytarget, AdUnitType.interstitial)) {
       final ad = EasyMytargetInterstitialAd(interstitialAdUnitId, plugin);
+
+      log('MyTarget--->${ad.adNetwork.name}');
       _interstitialAds.add(ad);
       _eventController.setupEvents(ad);
       await ad.load();
@@ -511,6 +493,9 @@ class EasyAds {
     if (_interstitialAds.doesNotContain(
         AdNetwork.adColony, AdUnitType.interstitial)) {
       final ad = EasyAdColonyInterstitialAd(interstitialAdUnitId);
+
+      log('AdColony--->${ad.adNetwork.name}');
+
       _interstitialAds.add(ad);
       _eventController.setupEvents(ad);
       await ad.load();
@@ -521,13 +506,19 @@ class EasyAds {
     final startAppSdk = StartAppSdk();
     // TODO make sure to comment out this line before release
     await startAppSdk.setTestAdsEnabled(true);
-    if (_interstitialAds.doesNotContain(
-        AdNetwork.startApp, AdUnitType.interstitial)) {
+
+    final isNoContains = _interstitialAds.doesNotContain(
+        AdNetwork.startApp, AdUnitType.interstitial);
+    if (isNoContains) {
       final ad = EasyStartAppInterstitialAd('', startAppSdk);
       _interstitialAds.add(ad);
+      log('StartApp--->${ad.adNetwork.name}');
+
       _eventController.setupEvents(ad);
       await ad.load();
     }
+
+    log('adstotal-->${_interstitialAds.map((e) => e.adNetwork.name).toList()}');
   }
 
   /// * [unityGameId] - identifier from Project Settings in Unity Dashboard.
@@ -556,6 +547,8 @@ class EasyAds {
         _interstitialAds.doesNotContain(
             AdNetwork.unity, AdUnitType.interstitial)) {
       final ad = EasyUnityAd(interstitialPlacementId, AdUnitType.interstitial);
+      log('Facebook--->${ad.adNetwork.name}');
+
       _interstitialAds.add(ad);
       _eventController.setupEvents(ad);
 
@@ -594,6 +587,9 @@ class EasyAds {
             AdNetwork.facebook, AdUnitType.interstitial)) {
       final ad = EasyFacebookFullScreenAd(
           interstitialPlacementId, AdUnitType.interstitial);
+
+      log('Facebook--->${ad.adNetwork.name}');
+
       _interstitialAds.add(ad);
       // _interstitialAds.insert(
       //     0, ad); //tradar que facebook siempre sea el primero(ok, funca)
@@ -658,6 +654,9 @@ class EasyAds {
           AdNetwork.ironSource, AdUnitType.interstitial)) {
         final ad = intertitialIronSource;
         // IronSource.setISListener(ad);
+
+        log('IronSource--->${ad.adNetwork.name}');
+
         _interstitialAds.add(ad);
         _eventController.setupEvents(ad);
         await ad.load();
@@ -742,7 +741,7 @@ class EasyAds {
     } else if (adUnitType == AdUnitType.appOpen) {
       ads = _appOpenAds;
     }
-
+    log('ads-->${ads.map((e) => e.adNetwork.name)}');
     if (adNetwork != AdNetwork.any) {
       // var ad = ads.firstWhereOrNull(
       //     (e) => AdNetwork.facebook == e.adNetwork); //primero facebook
@@ -766,6 +765,7 @@ class EasyAds {
     }
 
     for (final ad in ads) {
+      log('ad-->${ad.adNetwork.name}-->${ad.isAdLoaded}');
       if (ad.isAdLoaded) {
         if (adNetwork == AdNetwork.any || adNetwork == ad.adNetwork) {
           if (ad.adUnitType == AdUnitType.interstitial &&

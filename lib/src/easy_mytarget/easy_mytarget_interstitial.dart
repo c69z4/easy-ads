@@ -5,12 +5,10 @@ import 'package:easy_ads_flutter/src/enums/ad_unit_type.dart';
 import 'package:my_target_flutter/my_target_flutter.dart';
 
 class EasyMytargetInterstitialAd extends EasyAdBase {
-  EasyMytargetInterstitialAd(String adUnitId, MyTargetFlutter? pluginParam)
-      : super(adUnitId) {
-    plugin = pluginParam;
-  }
+  final MyTargetFlutter _plugin;
 
-  MyTargetFlutter? plugin;
+  EasyMytargetInterstitialAd(String adUnitId, this._plugin) : super(adUnitId);
+
   bool _isAdLoaded = false;
 
   @override
@@ -33,7 +31,7 @@ class EasyMytargetInterstitialAd extends EasyAdBase {
     // await plugin.initialize();
     interstitialAd?.clearListeners();
     interstitialAd =
-        await plugin?.createInterstitialAd(int.parse(adUnitId)); //yourSlotId
+        await _plugin.createInterstitialAd(int.parse(adUnitId)); //yourSlotId
 
     interstitialAd?.addListener(_listener);
     interstitialAd?.load();

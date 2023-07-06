@@ -122,7 +122,7 @@ void main() async {
       priorityAdNetworks: [
         AdNetwork.vungle,
         AdNetwork.yandex,
-        AdNetwork.facebook,
+        // AdNetwork.facebook,
         AdNetwork.ironSource,
         AdNetwork.unity,
         AdNetwork.appLovin,
@@ -362,22 +362,22 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
               ),
             ),
           ),
-          (widget.adNetwork == null)
-              ? const EasySmartBannerAd(
-                  priorityAdNetworks: [
-                    AdNetwork.yandex,
+          // (widget.adNetwork == null)
+          //     ? const EasySmartBannerAd(
+          //         priorityAdNetworks: [
+          //           AdNetwork.yandex,
 
-                    AdNetwork.facebook,
-                    AdNetwork.unity,
-                    AdNetwork.ironSource,
-                    // AdNetwork.appLovin,
-                    // AdNetwork.admob,
-                  ],
-                )
-              : EasyBannerAd(
-                  adNetwork: widget.adNetwork!,
-                  adSize: AdSize.largeBanner,
-                ),
+          //           AdNetwork.facebook,
+          //           AdNetwork.unity,
+          //           AdNetwork.ironSource,
+          //           // AdNetwork.appLovin,
+          //           // AdNetwork.admob,
+          //         ],
+          //       )
+          //     : EasyBannerAd(
+          //         adNetwork: widget.adNetwork!,
+          //         adSize: AdSize.largeBanner,
+          //       ),
           const Expanded(
             child: SingleChildScrollView(
               child: Padding(
