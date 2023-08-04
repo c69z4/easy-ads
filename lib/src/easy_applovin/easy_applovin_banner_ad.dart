@@ -2,9 +2,15 @@ import 'package:applovin_max/applovin_max.dart';
 import 'package:easy_ads_flutter/src/easy_ad_base.dart';
 import 'package:easy_ads_flutter/src/enums/ad_network.dart';
 import 'package:easy_ads_flutter/src/enums/ad_unit_type.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart' as admob;
 
 class EasyApplovinBannerAd extends EasyAdBase {
-  EasyApplovinBannerAd(String adUnitId) : super(adUnitId);
+  final admob.AdSize? adSize;
+
+  EasyApplovinBannerAd(
+    String adUnitId, {
+    this.adSize = admob.AdSize.banner,
+  }) : super(adUnitId);
 
   @override
   AdUnitType get adUnitType => AdUnitType.banner;
@@ -24,7 +30,7 @@ class EasyApplovinBannerAd extends EasyAdBase {
   dynamic show() {
     return MaxAdView(
       adUnitId: adUnitId,
-      adFormat: AdFormat.banner,
+      adFormat: adSize == admob.AdSize.banner ? AdFormat.banner : AdFormat.mrec,
       customData: 'EasyApplovinBannerAd',
       listener: AdViewAdListener(
         onAdLoadedCallback: (ad) {

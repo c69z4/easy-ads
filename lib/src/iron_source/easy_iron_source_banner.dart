@@ -3,10 +3,17 @@ import 'package:easy_ads_flutter/src/enums/ad_network.dart';
 import 'package:easy_ads_flutter/src/enums/ad_unit_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ironsource_x/banner.dart';
+
 import 'package:provider/provider.dart';
 
+import 'package:google_mobile_ads/google_mobile_ads.dart' as admob;
+
 class EasyIronSourceBannerAd extends EasyAdBase with IronSourceBannerListener {
-  EasyIronSourceBannerAd(String adUnitId) : super(adUnitId);
+  final admob.AdSize? adSize;
+  EasyIronSourceBannerAd(
+    String adUnitId, {
+    this.adSize = admob.AdSize.banner,
+  }) : super(adUnitId);
 
   @override
   AdUnitType get adUnitType => AdUnitType.banner;
@@ -27,10 +34,10 @@ class EasyIronSourceBannerAd extends EasyAdBase with IronSourceBannerListener {
   dynamic show() {
     // print('show banner');
     final bannerWidget = BuildBanner(
-      easyIronSourceBannerAd: this,
-      bannerProvider: bannerProvider,
-      adUnitId: adUnitId,
-    );
+        easyIronSourceBannerAd: this,
+        bannerProvider: bannerProvider,
+        adUnitId: adUnitId,
+        adSize: adSize);
     Future.delayed(const Duration(milliseconds: 500), () {
       bannerProvider.isBannerShow = true;
     });
@@ -70,13 +77,14 @@ class BuildBanner extends StatelessWidget {
   final EasyIronSourceBannerAd easyIronSourceBannerAd;
   final BannerProvider bannerProvider;
   final String adUnitId;
+  final admob.AdSize? adSize;
   const BuildBanner({
     super.key,
     required this.easyIronSourceBannerAd,
     required this.bannerProvider,
     required this.adUnitId,
+    required this.adSize,
   });
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -91,7 +99,6 @@ class BuildBanner extends StatelessWidget {
         child,
       ) {
         // print('reload Consumer Align osea Banner');
-
         /*
         banner
         largeBanner
@@ -102,14 +109,15 @@ class BuildBanner extends StatelessWidget {
         
          */
         // final sizeBanner =
-
         return bannerProv.isBannerShow //widget.bannerProvider
             ? Align(
                 alignment: Alignment.bottomCenter,
                 child: IronSourceBannerAd(
                   keepAlive: true,
                   listener: easyIronSourceBannerAd,
-                  size: BannerSize.BANNER,
+                  size: adSize == admob.AdSize.banner
+                      ? BannerSize.BANNER
+                      : BannerSize.RECTANGLE,
                   placementName: adUnitId,
                   // size: BannerSize.LARGE,
                   // size: BannerSize.LEADERBOARD,

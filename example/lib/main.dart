@@ -9,9 +9,7 @@ final adIdManager = MyIdManger();
 
 class MyIdManger extends IAdIdManager {
   @override
-  AppAdIds? get admobAdIds => null;
-  /*
-  AppAdIds(
+  AppAdIds? get admobAdIds => AppAdIds(
         appId: Platform.isAndroid
             ? 'ca-app-pub-3940256099942544~3347511713'
             : 'ca-app-pub-3940256099942544~1458002511',
@@ -22,17 +20,15 @@ class MyIdManger extends IAdIdManager {
         interstitialId: 'ca-app-pub-3940256099942544/1033173712',
         rewardedId: 'ca-app-pub-3940256099942544/5224354917',
       );
-   */
 
   @override
-  AppAdIds? get fbAdIds =>
-      null; /*const AppAdIds(
+  AppAdIds? get fbAdIds => const AppAdIds(
         appId: '1579706379118402',
         interstitialId: 'VID_HD_16_9_15S_LINK#YOUR_PLACEMENT_ID', //video test
         bannerId: 'IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID',
         rewardedId:
             'VID_HD_16_9_46S_APP_INSTALL#YOUR_PLACEMENT_ID', //video test
-      );*/
+      );
 
   @override
   AppAdIds? get unityAdIds => AppAdIds(
@@ -70,27 +66,31 @@ class MyIdManger extends IAdIdManager {
       );
 
   @override
-  AppAdIds? get yandexAdIds => AppAdIds(
+  AppAdIds? get yandexAdIds => null;
+
+  /* AppAdIds(
         appId: '2460782',
         bannerId:
             Platform.isAndroid ? 'demo-banner-yandex' : 'IOS_BANNER_AD_UNIT_ID',
         interstitialId: Platform.isAndroid
             ? 'demo-interstitial-yandex'
             : 'IOS_INTER_AD_UNIT_ID',
-      );
+      );*/
 
   @override
-  AppAdIds? get vungleAdIds => const AppAdIds(
+  AppAdIds? get vungleAdIds =>
+      null; /*const AppAdIds(
       appId: '6494f531cd4b24913c61c4b8', //'5adff6afb2cadf62871219ff'
       interstitialId: 'INTERSTITIALONE-8961105' //INTERSTITIALONE-8961105
-      );
+      );*/
 
   @override
-  AppAdIds? get mytargetAdIds => const AppAdIds(
+  AppAdIds? get mytargetAdIds =>
+      null; /*const AppAdIds(
         appId: 'cualquiera',
         interstitialId:
             '6896', //esta funcando con '6896' tomado del ejemplo , hasta que se apruebe en Mytarget// '1307283'
-      );
+      );*/
   @override
   AppAdIds? get adColonyAdIds => const AppAdIds(
         appId: 'app8cb3ef4425934d0295',
@@ -102,6 +102,7 @@ class MyIdManger extends IAdIdManager {
         appId:
             '201343194', //'201343194',//no es necesario aqui se define en AndroidManifest.xml
         interstitialId: '',
+        bannerId: '',
       );
 }
 
@@ -120,16 +121,16 @@ void main() async {
 
       //for intertitials priority/and enabled (solo los que se emnsionan se mostraran)
       priorityAdNetworks: [
-        AdNetwork.vungle,
-        AdNetwork.yandex,
-        // AdNetwork.facebook,
-        AdNetwork.ironSource,
-        AdNetwork.unity,
+        AdNetwork.admob,
+        AdNetwork.facebook,
         AdNetwork.appLovin,
-        AdNetwork.mytarget,
         AdNetwork.adColony,
+        AdNetwork.ironSource,
         AdNetwork.startApp,
-        // AdNetwork.admob,
+        AdNetwork.unity,
+        // AdNetwork.vungle,
+        // AdNetwork.yandex,
+        // AdNetwork.mytarget,
       ]);
 
   runApp(const MyApp());
@@ -211,19 +212,19 @@ class _CountryListScreenState extends State<CountryListScreen> {
                 onTap: () =>
                     _showAd(AdNetwork.ironSource, AdUnitType.interstitial),
               ),
-              AdButton(
-                networkName: 'Yandex Interstitial',
-                onTap: () => _showAd(AdNetwork.yandex, AdUnitType.interstitial),
-              ),
-              AdButton(
-                networkName: 'Vungle Interstitial',
-                onTap: () => _showAd(AdNetwork.vungle, AdUnitType.interstitial),
-              ),
-              AdButton(
-                networkName: 'myTarget Interstitial',
-                onTap: () =>
-                    _showAd(AdNetwork.mytarget, AdUnitType.interstitial),
-              ),
+              // AdButton(
+              //   networkName: 'Yandex Interstitial',
+              //   onTap: () => _showAd(AdNetwork.yandex, AdUnitType.interstitial),
+              // ),
+              // AdButton(
+              //   networkName: 'Vungle Interstitial',
+              //   onTap: () => _showAd(AdNetwork.vungle, AdUnitType.interstitial),
+              // ),
+              // AdButton(
+              //   networkName: 'myTarget Interstitial',
+              //   onTap: () =>
+              //       _showAd(AdNetwork.mytarget, AdUnitType.interstitial),
+              // ),
               AdButton(
                 networkName: 'AdColony Interstitial',
                 onTap: () =>
@@ -272,13 +273,14 @@ class _CountryListScreenState extends State<CountryListScreen> {
               // ),
               const EasySmartBannerAd(
                 priorityAdNetworks: [
-                  //no hay vungle banner
-                  AdNetwork.yandex,
+                  AdNetwork.admob,
                   AdNetwork.facebook,
-                  AdNetwork.unity,
                   AdNetwork.ironSource,
-                  // AdNetwork.appLovin,
-                  // AdNetwork.admob,
+                  AdNetwork.appLovin,
+                  AdNetwork.unity,
+                  AdNetwork.startApp,
+                  //no hay vungle banner
+                  // AdNetwork.yandex,
                 ],
               ),
             ],
@@ -362,22 +364,23 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
               ),
             ),
           ),
-          // (widget.adNetwork == null)
-          //     ? const EasySmartBannerAd(
-          //         priorityAdNetworks: [
-          //           AdNetwork.yandex,
-
-          //           AdNetwork.facebook,
-          //           AdNetwork.unity,
-          //           AdNetwork.ironSource,
-          //           // AdNetwork.appLovin,
-          //           // AdNetwork.admob,
-          //         ],
-          //       )
-          //     : EasyBannerAd(
-          //         adNetwork: widget.adNetwork!,
-          //         adSize: AdSize.largeBanner,
-          //       ),
+          (widget.adNetwork == null)
+              ? const EasySmartBannerAd(
+                  priorityAdNetworks: [
+                    AdNetwork.admob,
+                    AdNetwork.facebook,
+                    AdNetwork.unity,
+                    AdNetwork.ironSource,
+                    AdNetwork.appLovin,
+                    // AdNetwork.yandex,
+                  ],
+                  // adSize: AdSize.mediumRectangle,
+                  // adSize: AdSize.mediumRectangle, //null-->banner,
+                )
+              : EasyBannerAd(
+                  adNetwork: widget.adNetwork!,
+                  // adSize: AdSize.mediumRectangle,
+                ),
           const Expanded(
             child: SingleChildScrollView(
               child: Padding(

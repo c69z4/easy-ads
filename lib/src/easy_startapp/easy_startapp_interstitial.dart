@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_ads_flutter/src/easy_ad_base.dart';
 import 'package:easy_ads_flutter/src/enums/ad_network.dart';
 import 'package:easy_ads_flutter/src/enums/ad_unit_type.dart';
@@ -36,6 +34,7 @@ class EasyStartAppInterstitialAd extends EasyAdBase {
         // _interstitialAd?.dispose();
         _interstitialAd = null;
         onAdDismissed?.call(adNetwork, adUnitType, null);
+        load();
       },
       onAdNotDisplayed: () {
         _isAdLoaded = false;
@@ -49,7 +48,7 @@ class EasyStartAppInterstitialAd extends EasyAdBase {
       },
     );
     _isAdLoaded = true;
-    log('_interstitialAd-->${_interstitialAd}');
+    // log('_interstitialAd-->${_interstitialAd}');
 
     //     .then((interstitialAd) {
     //   _interstitialAd = interstitialAd;
@@ -65,7 +64,7 @@ class EasyStartAppInterstitialAd extends EasyAdBase {
 
   @override
   show() {
-    log('_isAdLoaded-->${_isAdLoaded}');
+    // log('_isAdLoaded-->${_isAdLoaded}');
     if (!_isAdLoaded) return;
 
     _interstitialAd?.show();
