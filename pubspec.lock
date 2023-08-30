@@ -13,10 +13,10 @@ packages:
     dependency: "direct main"
     description:
       name: applovin_max
-      sha256: d38d0b95295010c9fec8be0a79052dc705c80ad521eca26c57592d45d144634d
+      sha256: c08341cee8f0b8567f744d5d022e87249189c348ca2cae419eb571cbf5539820
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.0"
   characters:
     dependency: transitive
     description:

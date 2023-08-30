@@ -26,8 +26,9 @@ class MyIdManger extends IAdIdManager {
         appId: '1579706379118402',
         interstitialId: 'VID_HD_16_9_15S_LINK#YOUR_PLACEMENT_ID', //video test
         bannerId: 'IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID',
-        rewardedId:
-            'VID_HD_16_9_46S_APP_INSTALL#YOUR_PLACEMENT_ID', //video test
+        rewardedId: null, //video test
+        // rewardedId:
+        //     'VID_HD_16_9_46S_APP_INSTALL#YOUR_PLACEMENT_ID', //video test
       );
 
   @override
@@ -121,8 +122,8 @@ void main() async {
 
       //for intertitials priority/and enabled (solo los que se emnsionan se mostraran)
       priorityAdNetworks: [
-        AdNetwork.admob,
         AdNetwork.facebook,
+        AdNetwork.admob,
         AdNetwork.appLovin,
         AdNetwork.adColony,
         AdNetwork.ironSource,
@@ -367,19 +368,20 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
           (widget.adNetwork == null)
               ? const EasySmartBannerAd(
                   priorityAdNetworks: [
-                    AdNetwork.admob,
                     AdNetwork.facebook,
+                    AdNetwork.admob,
+                    AdNetwork.startApp,
                     AdNetwork.unity,
                     AdNetwork.ironSource,
                     AdNetwork.appLovin,
                     // AdNetwork.yandex,
                   ],
-                  // adSize: AdSize.mediumRectangle,
+                  adSize: AdSize.mediumRectangle,
                   // adSize: AdSize.mediumRectangle, //null-->banner,
                 )
               : EasyBannerAd(
                   adNetwork: widget.adNetwork!,
-                  // adSize: AdSize.mediumRectangle,
+                  adSize: AdSize.mediumRectangle,
                 ),
           const Expanded(
             child: SingleChildScrollView(
