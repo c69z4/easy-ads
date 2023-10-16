@@ -54,7 +54,9 @@ class MyIdManger extends IAdIdManager {
 
   @override
   AppAdIds? get appLovinAdIds => AppAdIds(
-        appId: "YOUR_SDK_KEY",
+        // appId: "YOUR_SDK_KEY",
+        appId:
+            "cbl7cVoB2PrVfbVTm2mzXBpwsaE1dXWT6JehTv4TuLfJMC4J28E7K3KgCrNIPfKc5JbwaiNV7Ko5ZeONQv_w9Q", //solo funca con el sdk key
         bannerId: Platform.isAndroid
             ? 'ANDROID_BANNER_AD_UNIT_ID'
             : 'IOS_BANNER_AD_UNIT_ID',
@@ -124,11 +126,11 @@ void main() async {
       priorityAdNetworks: [
         AdNetwork.facebook,
         AdNetwork.admob,
-        AdNetwork.appLovin,
-        AdNetwork.adColony,
-        AdNetwork.ironSource,
-        AdNetwork.startApp,
         AdNetwork.unity,
+        AdNetwork.appLovin,
+        AdNetwork.ironSource,
+        // AdNetwork.adColony,
+        // AdNetwork.startApp,
         // AdNetwork.vungle,
         // AdNetwork.yandex,
         // AdNetwork.mytarget,
@@ -226,16 +228,16 @@ class _CountryListScreenState extends State<CountryListScreen> {
               //   onTap: () =>
               //       _showAd(AdNetwork.mytarget, AdUnitType.interstitial),
               // ),
-              AdButton(
-                networkName: 'AdColony Interstitial',
-                onTap: () =>
-                    _showAd(AdNetwork.adColony, AdUnitType.interstitial),
-              ),
-              AdButton(
-                networkName: 'StartApp Interstitial',
-                onTap: () =>
-                    _showAd(AdNetwork.startApp, AdUnitType.interstitial),
-              ),
+              // AdButton(
+              //   networkName: 'AdColony Interstitial',
+              //   onTap: () =>
+              //       _showAd(AdNetwork.adColony, AdUnitType.interstitial),
+              // ),
+              // AdButton(
+              //   networkName: 'StartApp Interstitial',
+              //   onTap: () =>
+              //       _showAd(AdNetwork.startApp, AdUnitType.interstitial),
+              // ),
               AdButton(
                 networkName: 'Available Interstitial',
                 onTap: () => _showAvailableAd(AdUnitType.interstitial),
@@ -278,8 +280,8 @@ class _CountryListScreenState extends State<CountryListScreen> {
                   AdNetwork.facebook,
                   AdNetwork.ironSource,
                   AdNetwork.appLovin,
-                  AdNetwork.unity,
-                  AdNetwork.startApp,
+                  // AdNetwork.unity,
+                  // AdNetwork.startApp,
                   //no hay vungle banner
                   // AdNetwork.yandex,
                 ],
@@ -370,13 +372,13 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
                   priorityAdNetworks: [
                     AdNetwork.facebook,
                     AdNetwork.admob,
-                    AdNetwork.startApp,
-                    AdNetwork.unity,
-                    AdNetwork.ironSource,
                     AdNetwork.appLovin,
+                    AdNetwork.ironSource,
+                    AdNetwork.unity,
+                    // AdNetwork.startApp,
                     // AdNetwork.yandex,
                   ],
-                  adSize: AdSize.mediumRectangle,
+                  // adSize: AdSize.mediumRectangle,
                   // adSize: AdSize.mediumRectangle, //null-->banner,
                 )
               : EasyBannerAd(
