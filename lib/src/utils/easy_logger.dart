@@ -21,41 +21,41 @@ class EasyLogger {
   void _onAdNetworkInitialized(AdEvent event) {
     if (event.data == true) {
       _logger.i(
-          "${event.adNetwork.value} has been initialized and is ready to use.");
+          "${event.adNetwork.name} has been initialized and is ready to use.");
     } else {
-      _logger.e("${event.adNetwork.value} could not be initialized.");
+      _logger.e("${event.adNetwork.name} could not be initialized.");
     }
   }
 
   void _onAdLoaded(AdEvent event) {
     _logger.i(
-        "${event.adUnitType?.value} ads for ${event.adNetwork.value} have been loaded.");
+        "${event.adUnitType?.name} ads for ${event.adNetwork.name} have been loaded.");
   }
 
   void _onAdFailedToLoad(AdEvent event) {
     _logger.e(
-        "${event.adUnitType?.value} ads for ${event.adNetwork.value} could not be loaded.\nERROR: ${event.error}");
+        "${event.adUnitType?.name} ads for ${event.adNetwork.name} could not be loaded.\nERROR: ${event.error}");
   }
 
   void _onAdShowed(AdEvent event) {
     _logger.i(
-        "${event.adUnitType?.value} ad for ${event.adNetwork.value} has been shown.");
+        "${event.adUnitType?.name} ad for ${event.adNetwork.name} has been shown.");
   }
 
   void _onAdFailedShow(AdEvent event) {
     _logger.e(
-        "${event.adUnitType?.value} ad for ${event.adNetwork.value} could not be showed.\nERROR: ${event.error}");
+        "${event.adUnitType?.name} ad for ${event.adNetwork.name} could not be showed.\nERROR: ${event.error}");
   }
 
   void _onAdDismissed(AdEvent event) {
     _logger.i(
-        "${event.adUnitType?.value} ad for ${event.adNetwork.value} has been dismissed.");
+        "${event.adUnitType?.name} ad for ${event.adNetwork.name} has been dismissed.");
   }
 
   void _onEarnedReward(AdEvent event) {
     final dataMap = event.data as Map<String, dynamic>?;
     _logger.i(
-        "User has earned ${dataMap?['rewardAmount']} of ${dataMap?['rewardType']} from ${event.adNetwork.value}");
+        "User has earned ${dataMap?['rewardAmount']} of ${dataMap?['rewardType']} from ${event.adNetwork.name}");
   }
 
   void _onAdEvent(AdEvent event) {

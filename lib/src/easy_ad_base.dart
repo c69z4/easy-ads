@@ -6,17 +6,14 @@ abstract class EasyAdBase {
 
   /// This will be called for initialization when we don't have to wait for the initialization
   EasyAdBase(this.adUnitId);
-
   AdNetwork get adNetwork;
   AdUnitType get adUnitType;
   bool get isAdLoaded;
-
   void dispose();
 
   /// This will load ad, It will only load the ad if isAdLoaded is false
   Future<void> load();
   dynamic show();
-
   EasyAdCallback? onAdLoaded;
   EasyAdCallback? onAdShowed;
   EasyAdCallback? onAdClicked;

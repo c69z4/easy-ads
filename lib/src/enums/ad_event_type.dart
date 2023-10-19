@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 
 enum AdEventType {
   /// When ad network is initialized and ready to load ad units this will be triggered
@@ -16,6 +16,6 @@ enum AdEventType {
   earnedReward,
 }
 
-extension AdEventTypeExtension on AdEventType {
-  String get value => describeEnum(this);
-}
+// extension AdEventTypeExtension on AdEventType {
+//   String get value => describeEnum(this);
+// }
