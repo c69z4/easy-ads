@@ -62,7 +62,7 @@
            android:value="ca-app-pub-3940256099942544~3347511713"/>
 
 
-		<meta-data
+		<!-- <meta-data
                 android:name="com.startapp.sdk.APPLICATION_ID"
                 android:value="YOUR_APP_ID" />
         <meta-data
@@ -73,7 +73,7 @@
                     android:exported="false">
                     <meta-data android:name="com.startapp.sdk.SPLASH_ADS_ENABLED"
                         android:value="false" />
-         </provider>
+         </provider> -->
        
         <meta-data
             android:name="flutterEmbedding"
