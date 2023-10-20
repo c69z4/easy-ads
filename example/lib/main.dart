@@ -126,7 +126,7 @@ void main() async {
       priorityAdNetworks: [
         AdNetwork.facebook,
         AdNetwork.admob,
-        AdNetwork.unity,
+        // AdNetwork.unity,
         AdNetwork.appLovin,
         AdNetwork.ironSource,
         // AdNetwork.adColony,
@@ -201,10 +201,10 @@ class _CountryListScreenState extends State<CountryListScreen> {
                 onTap: () =>
                     _showAd(AdNetwork.facebook, AdUnitType.interstitial),
               ),
-              AdButton(
-                networkName: 'Unity Interstitial',
-                onTap: () => _showAd(AdNetwork.unity, AdUnitType.interstitial),
-              ),
+              // AdButton(
+              //   networkName: 'Unity Interstitial',
+              //   onTap: () => _showAd(AdNetwork.unity, AdUnitType.interstitial),
+              // ),
               AdButton(
                 networkName: 'Applovin Interstitial',
                 onTap: () =>
@@ -374,7 +374,7 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
                     AdNetwork.admob,
                     AdNetwork.appLovin,
                     AdNetwork.ironSource,
-                    AdNetwork.unity,
+                    // AdNetwork.unity,
                     // AdNetwork.startApp,
                     // AdNetwork.yandex,
                   ],
