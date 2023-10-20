@@ -4,7 +4,7 @@ abstract class IAdIdManager {
   /// Pass null if you wish not to implement unity ads
   ///
   /// AppAdIds? get unityAdIds => null;
-  AppAdIds? get unityAdIds;
+  // AppAdIds? get unityAdIds;
 
   /// Pass null if you wish not to implement admob ads
   ///
@@ -27,19 +27,19 @@ abstract class IAdIdManager {
   AppAdIds? get ironSourceAdIds;
 
   /// AppAdIds? get yandexAdIds => null;
-  AppAdIds? get yandexAdIds;
+  // AppAdIds? get yandexAdIds;
 
-  /// AppAdIds? get vungleAdIds => null;
-  AppAdIds? get vungleAdIds;
+  // /// AppAdIds? get vungleAdIds => null;
+  // AppAdIds? get vungleAdIds;
 
-  /// AppAdIds? get mytargetAdIds => null;
-  AppAdIds? get mytargetAdIds;
+  // /// AppAdIds? get mytargetAdIds => null;
+  // AppAdIds? get mytargetAdIds;
 
-  /// AppAdIds? get adColonyAdIds => null;
-  AppAdIds? get adColonyAdIds;
+  // /// AppAdIds? get adColonyAdIds => null;
+  // AppAdIds? get adColonyAdIds;
 
-  /// AppAdIds? get startAppAdIds => null;
-  AppAdIds? get startAppAdIds;
+  // /// AppAdIds? get startAppAdIds => null;
+  // AppAdIds? get startAppAdIds;
 }
 
 class AppAdIds {

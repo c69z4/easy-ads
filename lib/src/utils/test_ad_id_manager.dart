@@ -18,14 +18,14 @@ class TestAdIdManager extends IAdIdManager {
         rewardedId: 'ca-app-pub-3940256099942544/5224354917',
       );
 
-  @override
-  AppAdIds? get unityAdIds => AppAdIds(
-        appId: Platform.isAndroid ? '4374881' : '4374880',
-        bannerId: Platform.isAndroid ? 'Banner_Android' : 'Banner_iOS',
-        interstitialId:
-            Platform.isAndroid ? 'Interstitial_Android' : 'Interstitial_iOS',
-        rewardedId: Platform.isAndroid ? 'Rewarded_Android' : 'Rewarded_iOS',
-      );
+  // @override
+  // AppAdIds? get unityAdIds => AppAdIds(
+  //       appId: Platform.isAndroid ? '4374881' : '4374880',
+  //       bannerId: Platform.isAndroid ? 'Banner_Android' : 'Banner_iOS',
+  //       interstitialId:
+  //           Platform.isAndroid ? 'Interstitial_Android' : 'Interstitial_iOS',
+  //       rewardedId: Platform.isAndroid ? 'Rewarded_Android' : 'Rewarded_iOS',
+  //     );
 
   @override
   AppAdIds? get appLovinAdIds => AppAdIds(
@@ -58,39 +58,39 @@ class TestAdIdManager extends IAdIdManager {
             'Default', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
         rewardedId: 'DefaultRewardedVideo',
       );
-  @override
-  AppAdIds? get yandexAdIds => AppAdIds(
-        appId: Platform.isAndroid ? '1304d220d' : 'fe6d93e9',
-        bannerId:
-            'DefaultBanner', //IronSource.isBannerPlacementCapped('DefaultBanner')
-        interstitialId:
-            'Default', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
-        rewardedId: 'DefaultRewardedVideo',
-      );
-  @override
-  AppAdIds? get vungleAdIds => const AppAdIds(
-        appId:
-            '6494f531cd4b24913c61ctest', //'6494f531cd4b24913c61c4b8', //Platform.isAndroid ? '1304d220d' : 'fe6d93e9',
-        interstitialId:
-            'Default_intertitial', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
-        // bannerId:
-        //     'DefaultBanner', //IronSource.isBannerPlacementCapped('DefaultBanner')
-        // rewardedId: 'DefaultRewardedVideo',
-      );
-  @override
-  AppAdIds? get mytargetAdIds => const AppAdIds(
-        appId: 'cualquiera',
-        interstitialId: '1307283',
-      );
-  @override
-  AppAdIds? get adColonyAdIds => const AppAdIds(
-        appId: 'app8cb3ef4425934d0295',
-        interstitialId: 'vze1e44a48128a4aaf8c',
-      );
-  @override
-  AppAdIds? get startAppAdIds => const AppAdIds(
-        appId:
-            'YOUR_APP_ID', //'201343194',//no es necesario aqui se define en AndroidManifest.xml
-        interstitialId: '',
-      );
+  // @override
+  // AppAdIds? get yandexAdIds => AppAdIds(
+  //       appId: Platform.isAndroid ? '1304d220d' : 'fe6d93e9',
+  //       bannerId:
+  //           'DefaultBanner', //IronSource.isBannerPlacementCapped('DefaultBanner')
+  //       interstitialId:
+  //           'Default', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
+  //       rewardedId: 'DefaultRewardedVideo',
+  //     );
+  // @override
+  // AppAdIds? get vungleAdIds => const AppAdIds(
+  //       appId:
+  //           '6494f531cd4b24913c61ctest', //'6494f531cd4b24913c61c4b8', //Platform.isAndroid ? '1304d220d' : 'fe6d93e9',
+  //       interstitialId:
+  //           'Default_intertitial', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
+  //       // bannerId:
+  //       //     'DefaultBanner', //IronSource.isBannerPlacementCapped('DefaultBanner')
+  //       // rewardedId: 'DefaultRewardedVideo',
+  //     );
+  // @override
+  // AppAdIds? get mytargetAdIds => const AppAdIds(
+  //       appId: 'cualquiera',
+  //       interstitialId: '1307283',
+  //     );
+  // @override
+  // AppAdIds? get adColonyAdIds => const AppAdIds(
+  //       appId: 'app8cb3ef4425934d0295',
+  //       interstitialId: 'vze1e44a48128a4aaf8c',
+  //     );
+  // @override
+  // AppAdIds? get startAppAdIds => const AppAdIds(
+  //       appId:
+  //           'YOUR_APP_ID', //'201343194',//no es necesario aqui se define en AndroidManifest.xml
+  //       interstitialId: '',
+  //     );
 }

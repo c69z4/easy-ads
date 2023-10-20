@@ -31,14 +31,14 @@ class MyIdManger extends IAdIdManager {
         //     'VID_HD_16_9_46S_APP_INSTALL#YOUR_PLACEMENT_ID', //video test
       );
 
-  @override
-  AppAdIds? get unityAdIds => AppAdIds(
-        appId: Platform.isAndroid ? '4374881' : '4374880',
-        bannerId: Platform.isAndroid ? 'Banner_Android' : 'Banner_iOS',
-        interstitialId:
-            Platform.isAndroid ? 'Interstitial_Android' : 'Interstitial_iOS',
-        rewardedId: Platform.isAndroid ? 'Rewarded_Android' : 'Rewarded_iOS',
-      );
+  // @override
+  // AppAdIds? get unityAdIds => AppAdIds(
+  //       appId: Platform.isAndroid ? '4374881' : '4374880',
+  //       bannerId: Platform.isAndroid ? 'Banner_Android' : 'Banner_iOS',
+  //       interstitialId:
+  //           Platform.isAndroid ? 'Interstitial_Android' : 'Interstitial_iOS',
+  //       rewardedId: Platform.isAndroid ? 'Rewarded_Android' : 'Rewarded_iOS',
+  //     );
 
   @override
   AppAdIds? get ironSourceAdIds => AppAdIds(
@@ -68,8 +68,8 @@ class MyIdManger extends IAdIdManager {
             : 'IOS_REWARDED_AD_UNIT_ID',
       );
 
-  @override
-  AppAdIds? get yandexAdIds => null;
+  // @override
+  // AppAdIds? get yandexAdIds => null;
 
   /* AppAdIds(
         appId: '2460782',
@@ -80,33 +80,33 @@ class MyIdManger extends IAdIdManager {
             : 'IOS_INTER_AD_UNIT_ID',
       );*/
 
-  @override
-  AppAdIds? get vungleAdIds =>
-      null; /*const AppAdIds(
-      appId: '6494f531cd4b24913c61c4b8', //'5adff6afb2cadf62871219ff'
-      interstitialId: 'INTERSTITIALONE-8961105' //INTERSTITIALONE-8961105
-      );*/
+  // @override
+  // AppAdIds? get vungleAdIds =>
+  //     null; /*const AppAdIds(
+  //     appId: '6494f531cd4b24913c61c4b8', //'5adff6afb2cadf62871219ff'
+  //     interstitialId: 'INTERSTITIALONE-8961105' //INTERSTITIALONE-8961105
+  //     );*/
 
-  @override
-  AppAdIds? get mytargetAdIds =>
-      null; /*const AppAdIds(
-        appId: 'cualquiera',
-        interstitialId:
-            '6896', //esta funcando con '6896' tomado del ejemplo , hasta que se apruebe en Mytarget// '1307283'
-      );*/
-  @override
-  AppAdIds? get adColonyAdIds => const AppAdIds(
-        appId: 'app8cb3ef4425934d0295',
-        interstitialId: 'vze1e44a48128a4aaf8c',
-      );
+  // @override
+  // AppAdIds? get mytargetAdIds =>
+  //     null; /*const AppAdIds(
+  //       appId: 'cualquiera',
+  //       interstitialId:
+  //           '6896', //esta funcando con '6896' tomado del ejemplo , hasta que se apruebe en Mytarget// '1307283'
+  //     );*/
+  // @override
+  // AppAdIds? get adColonyAdIds => const AppAdIds(
+  //       appId: 'app8cb3ef4425934d0295',
+  //       interstitialId: 'vze1e44a48128a4aaf8c',
+  //     );
 
-  @override
-  AppAdIds? get startAppAdIds => const AppAdIds(
-        appId:
-            '201343194', //'201343194',//no es necesario aqui se define en AndroidManifest.xml
-        interstitialId: '',
-        bannerId: '',
-      );
+  // @override
+  // AppAdIds? get startAppAdIds => const AppAdIds(
+  //       appId:
+  //           '201343194', //'201343194',//no es necesario aqui se define en AndroidManifest.xml
+  //       interstitialId: '',
+  //       bannerId: '',
+  //     );
 }
 
 void main() async {
