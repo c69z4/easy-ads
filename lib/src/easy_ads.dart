@@ -11,7 +11,7 @@ import 'package:easy_ads_flutter/src/easy_applovin/easy_applovin_interstitial_ad
 import 'package:easy_ads_flutter/src/easy_applovin/easy_applovin_rewarded_ad.dart';
 import 'package:easy_ads_flutter/src/easy_facebook/easy_facebook_banner_ad.dart';
 import 'package:easy_ads_flutter/src/easy_facebook/easy_facebook_full_screen_ad.dart';
-import 'package:easy_ads_flutter/src/easy_unity/easy_unity_ad.dart';
+// import 'package:easy_ads_flutter/src/easy_unity/easy_unity_ad.dart';
 import 'package:easy_ads_flutter/src/iron_source/easy_iron_source_banner.dart';
 import 'package:easy_ads_flutter/src/utils/auto_hiding_loader_dialog.dart';
 import 'package:easy_ads_flutter/src/utils/easy_event_controller.dart';
@@ -20,7 +20,7 @@ import 'package:easy_ads_flutter/src/utils/extensions.dart';
 import 'package:easy_audience_network/easy_audience_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ironsource_x/ironsource.dart';
-import 'package:unity_ads_plugin/unity_ads_plugin.dart';
+// import 'package:unity_ads_plugin/unity_ads_plugin.dart';
 import 'iron_source/easy_iron_source_interstitial_ad.dart';
 
 class EasyAds {
@@ -191,7 +191,7 @@ class EasyAds {
       ); // currentflutterVersion: currentflutterVersion
     }
 
-    final unityGameId = manager.unityAdIds?.appId;
+    /*final unityGameId = manager.unityAdIds?.appId;
     if (unityGameId != null && unityGameId.isNotEmpty) {
       EasyAds.instance._initUnity(
         unityGameId: unityGameId,
@@ -199,7 +199,7 @@ class EasyAds {
         interstitialPlacementId: manager.unityAdIds?.interstitialId,
         rewardedPlacementId: manager.unityAdIds?.rewardedId,
       );
-    }
+    }*/
 
     final appLovinSdkId = manager.appLovinAdIds?.appId;
     if (appLovinSdkId != null && appLovinSdkId.isNotEmpty) {
@@ -518,7 +518,7 @@ class EasyAds {
 
   /// * [unityGameId] - identifier from Project Settings in Unity Dashboard.
   /// * [testMode] - if true, then test ads are shown.
-  Future _initUnity({
+  /*Future _initUnity({
     String? unityGameId,
     bool testMode = false,
     String? interstitialPlacementId,
@@ -559,7 +559,7 @@ class EasyAds {
 
       await ad.load();
     }
-  }
+  }*/
 
   Future _initFacebook({
     required bool iOSAdvertiserTrackingEnabled,

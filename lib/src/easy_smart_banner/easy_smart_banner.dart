@@ -81,10 +81,13 @@ class _EasySmartBannerAdState extends State<EasySmartBannerAd> {
     } else if (adNetwork == AdNetwork.appLovin &&
         adIdManager.appLovinAdIds?.bannerId != null) {
       return true;
-    } else if (adNetwork == AdNetwork.unity &&
+    }
+
+    /*else if (adNetwork == AdNetwork.unity &&
         adIdManager.unityAdIds?.bannerId != null) {
       return true;
-    } else if (adNetwork == AdNetwork.ironSource &&
+    } */
+    else if (adNetwork == AdNetwork.ironSource &&
         adIdManager.ironSourceAdIds?.bannerId != null) {
       return true;
     }
