@@ -82,6 +82,7 @@ class EasyAds {
       {bool unityTestMode = false,
       bool fbTestMode = false,
       bool startAppTestMode = false,
+      bool? isMutedAdmobIntertitial = false,
       AdRequest? adMobAdRequest,
       RequestConfiguration? admobConfiguration,
       bool enableLogger = true,
@@ -114,6 +115,9 @@ class EasyAds {
 
     if (admobConfiguration != null) {
       MobileAds.instance.updateRequestConfiguration(admobConfiguration);
+      if (isMutedAdmobIntertitial == true) {
+        MobileAds.instance.setAppMuted(true);
+      }
     }
 
     final fbAdId = manager.fbAdIds?.appId;
