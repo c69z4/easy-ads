@@ -16,7 +16,7 @@ dependencies:
   collection: ^1.18.0
   # 0.3.9 da error de compilacion, si se cambia a 0.3.9 y luego volver a 0.3.8 ya no es posible abria que clonar otra vez git clone https://github.com/jpolstre/easy-ads.git
   # unity_ads_plugin: ^0.3.8
-  applovin_max: ^2.5.0 #3.3.0
+  applovin_max: ^3.3.0
   easy_audience_network: ^0.0.6
   logger: ^2.0.2+1
   # flutter_ironsource_x: ^2.7.2
