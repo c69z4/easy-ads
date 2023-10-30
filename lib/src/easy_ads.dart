@@ -113,11 +113,11 @@ class EasyAds {
       _adRequest = adMobAdRequest;
     }
 
+    if (isMutedAdmobIntertitial == true) {
+      MobileAds.instance.setAppMuted(true);
+    }
     if (admobConfiguration != null) {
       MobileAds.instance.updateRequestConfiguration(admobConfiguration);
-      if (isMutedAdmobIntertitial == true) {
-        MobileAds.instance.setAppMuted(true);
-      }
     }
 
     final fbAdId = manager.fbAdIds?.appId;
