@@ -8,9 +8,11 @@ class EasyAdmobBannerAd extends EasyAdBase {
   final AdRequest _adRequest;
   final AdSize adSize;
 
-  EasyAdmobBannerAd(String adUnitId,
-      {AdRequest? adRequest, this.adSize = AdSize.banner})
-      : _adRequest = adRequest ?? const AdRequest(),
+  EasyAdmobBannerAd(
+    String adUnitId, {
+    AdRequest? adRequest,
+    this.adSize = AdSize.banner,
+  })  : _adRequest = adRequest ?? const AdRequest(),
         super(adUnitId);
 
   BannerAd? _bannerAd;
@@ -28,9 +30,6 @@ class EasyAdmobBannerAd extends EasyAdBase {
     _bannerAd = null;
   }
 
-  final windowSize =
-      WidgetsBinding.instance.platformDispatcher.views.first.physicalSize;
-
   @override
   bool get isAdLoaded => _isAdLoaded;
 
@@ -41,9 +40,7 @@ class EasyAdmobBannerAd extends EasyAdBase {
     _isAdLoaded = false;
 
     _bannerAd = BannerAd(
-      size: AdSize(
-          width: windowSize.width.toInt(),
-          height: kToolbarHeight.ceil()), //adSize,
+      size: adSize,
       adUnitId: adUnitId,
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
