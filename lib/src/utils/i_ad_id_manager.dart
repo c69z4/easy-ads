@@ -27,7 +27,7 @@ abstract class IAdIdManager {
   AppAdIds? get ironSourceAdIds;
 
   /// AppAdIds? get yandexAdIds => null;
-  // AppAdIds? get yandexAdIds;
+  AppAdIds? get yandexAdIds;
 
   // /// AppAdIds? get vungleAdIds => null;
   // AppAdIds? get vungleAdIds;

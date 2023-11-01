@@ -58,15 +58,15 @@ class TestAdIdManager extends IAdIdManager {
             'Default', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
         rewardedId: 'DefaultRewardedVideo',
       );
-  // @override
-  // AppAdIds? get yandexAdIds => AppAdIds(
-  //       appId: Platform.isAndroid ? '1304d220d' : 'fe6d93e9',
-  //       bannerId:
-  //           'DefaultBanner', //IronSource.isBannerPlacementCapped('DefaultBanner')
-  //       interstitialId:
-  //           'Default', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
-  //       rewardedId: 'DefaultRewardedVideo',
-  //     );
+  @override
+  AppAdIds? get yandexAdIds => AppAdIds(
+        appId: Platform.isAndroid ? '1304d220d' : 'fe6d93e9',
+        bannerId:
+            'DefaultBanner', //IronSource.isBannerPlacementCapped('DefaultBanner')
+        interstitialId:
+            'Default', // await IronSource.isInterstitialPlacementCapped(placementName: "Default")
+        rewardedId: 'DefaultRewardedVideo',
+      );
   // @override
   // AppAdIds? get vungleAdIds => const AppAdIds(
   //       appId:

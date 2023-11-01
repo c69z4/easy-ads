@@ -68,17 +68,17 @@ class MyIdManger extends IAdIdManager {
             : 'IOS_REWARDED_AD_UNIT_ID',
       );
 
-  // @override
   // AppAdIds? get yandexAdIds => null;
 
-  /* AppAdIds(
+  @override
+  AppAdIds? get yandexAdIds => AppAdIds(
         appId: '2460782',
         bannerId:
             Platform.isAndroid ? 'demo-banner-yandex' : 'IOS_BANNER_AD_UNIT_ID',
         interstitialId: Platform.isAndroid
             ? 'demo-interstitial-yandex'
             : 'IOS_INTER_AD_UNIT_ID',
-      );*/
+      );
 
   // @override
   // AppAdIds? get vungleAdIds =>
@@ -129,10 +129,10 @@ void main() async {
         // AdNetwork.unity,
         AdNetwork.appLovin,
         AdNetwork.ironSource,
+        AdNetwork.yandex,
         // AdNetwork.adColony,
         // AdNetwork.startApp,
         // AdNetwork.vungle,
-        // AdNetwork.yandex,
         // AdNetwork.mytarget,
       ]);
 
@@ -215,10 +215,10 @@ class _CountryListScreenState extends State<CountryListScreen> {
                 onTap: () =>
                     _showAd(AdNetwork.ironSource, AdUnitType.interstitial),
               ),
-              // AdButton(
-              //   networkName: 'Yandex Interstitial',
-              //   onTap: () => _showAd(AdNetwork.yandex, AdUnitType.interstitial),
-              // ),
+              AdButton(
+                networkName: 'Yandex Interstitial',
+                onTap: () => _showAd(AdNetwork.yandex, AdUnitType.interstitial),
+              ),
               // AdButton(
               //   networkName: 'Vungle Interstitial',
               //   onTap: () => _showAd(AdNetwork.vungle, AdUnitType.interstitial),
@@ -280,10 +280,10 @@ class _CountryListScreenState extends State<CountryListScreen> {
                   AdNetwork.facebook,
                   AdNetwork.ironSource,
                   AdNetwork.appLovin,
+                  AdNetwork.yandex,
                   // AdNetwork.unity,
                   // AdNetwork.startApp,
                   //no hay vungle banner
-                  // AdNetwork.yandex,
                 ],
               ),
             ],
@@ -374,9 +374,9 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
                     AdNetwork.admob,
                     AdNetwork.appLovin,
                     AdNetwork.ironSource,
+                    AdNetwork.yandex,
                     // AdNetwork.unity,
                     // AdNetwork.startApp,
-                    // AdNetwork.yandex,
                   ],
                   // adSize: AdSize.mediumRectangle,
                   // adSize: AdSize.mediumRectangle, //null-->banner,
